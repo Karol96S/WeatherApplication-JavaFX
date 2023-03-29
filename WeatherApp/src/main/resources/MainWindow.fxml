@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="618.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
+   <children>
+      <Label id="weatherForecast" alignment="CENTER" layoutX="320.0" prefHeight="47.0" prefWidth="241.0" text="Prognoza Pogody" AnchorPane.bottomAnchor="571.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0" />
+      <Label alignment="CENTER" layoutX="180.0" layoutY="159.0" prefHeight="34.0" prefWidth="141.0" text="Start" />
+      <Label alignment="CENTER" layoutX="561.0" layoutY="159.0" prefHeight="34.0" prefWidth="141.0" text="Finisz" />
+      <Label layoutX="141.0" layoutY="48.0" prefHeight="34.0" prefWidth="77.0" text="Z kąd:" />
+      <Label layoutX="141.0" layoutY="88.0" prefHeight="34.0" prefWidth="77.0" text="Do kąd:" />
+      <TextField fx:id="startCity" layoutX="218.0" layoutY="52.0" prefHeight="25.0" prefWidth="600.0" />
+      <TextField fx:id="destinationCity" layoutX="218.0" layoutY="92.0" prefHeight="25.0" prefWidth="600.0" />
+      <Button layoutX="702.0" layoutY="122.0" mnemonicParsing="false" onAction="#checkWeatherButtonAction" prefHeight="25.0" prefWidth="116.0" text="Sprawdź pogodę" />
+      <Label layoutX="14.0" layoutY="227.0" prefHeight="34.0" prefWidth="103.0" text="Day1" />
+      <Label layoutX="14.0" layoutY="309.0" prefHeight="34.0" prefWidth="103.0" text="Day2" />
+      <Label layoutX="14.0" layoutY="379.0" prefHeight="34.0" prefWidth="103.0" text="Day3" />
+      <Label layoutX="14.0" layoutY="448.0" prefHeight="34.0" prefWidth="103.0" text="Day4" />
+      <Label layoutX="14.0" layoutY="536.0" prefHeight="34.0" prefWidth="103.0" text="Day5" />
+      <ImageView fx:id="dayOneStartImage" fitHeight="57.0" fitWidth="84.0" layoutX="209.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="DayOneDestinationImage" fitHeight="57.0" fitWidth="91.0" layoutX="600.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="TempStartDayOne" layoutX="212.0" layoutY="252.0" prefHeight="19.0" prefWidth="77.0" text="TempStartOne" />
+      <Label fx:id="TempDestinationDayOne" layoutX="607.0" layoutY="253.0" prefHeight="19.0" prefWidth="77.0" text="TempStartTwo" />
+      <Label fx:id="errorLabel" layoutX="218.0" layoutY="126.0" prefHeight="17.0" prefWidth="481.0" text="Error label" />
+   </children>
+</AnchorPane>
