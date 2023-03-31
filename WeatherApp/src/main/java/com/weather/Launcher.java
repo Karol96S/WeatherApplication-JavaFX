@@ -17,6 +17,7 @@ public class Launcher extends Application
     private WeatherMenager weatherMenager = new WeatherMenager();
 
     public void start(Stage primaryStage) throws Exception {
+        //check for conditions if city is correct etc.
         MainWindow mainWindow = new MainWindow(weatherMenager);
         mainWindow.showMainWindow();
     }

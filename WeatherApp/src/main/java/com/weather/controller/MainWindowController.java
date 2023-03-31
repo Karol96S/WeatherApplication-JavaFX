@@ -39,8 +39,15 @@ public class MainWindowController extends BaseController implements Initializabl
     private TextField startCity;
 
     @FXML
-    void checkWeatherButtonAction() {
+    private Label startCityDisplayLabel;
 
+    @FXML
+    private Label destinationCityDisplayLabel;
+
+    @FXML
+    void checkWeatherButtonAction() {
+        startCityDisplayLabel.setText(startCity.getText());
+        destinationCityDisplayLabel.setText(destinationCity.getText());
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
