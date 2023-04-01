@@ -1,5 +1,6 @@
 package com.weather;
 
+import com.weather.model.Connector;
 import com.weather.views.MainWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ public class Launcher extends Application
     public void start(Stage primaryStage) throws Exception {
         //check for conditions if city is correct etc.
         MainWindow mainWindow = new MainWindow(weatherMenager);
-        mainWindow.showMainWindow();
+        Connector.sendRequest();
+        //mainWindow.showMainWindow();
     }
 }
