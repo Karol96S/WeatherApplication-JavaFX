@@ -1,5 +1,7 @@
 package com.weather;
 
+import com.weather.model.Connector;
+import com.weather.model.WeatherData;
 import com.weather.views.MainWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,6 +21,9 @@ public class Launcher extends Application
     public void start(Stage primaryStage) throws Exception {
         //check for conditions if city is correct etc.
         MainWindow mainWindow = new MainWindow(weatherMenager);
+        //Connector.sendRequest(Connector.buildApiRequest("Warszawa"));
+        //WeatherData.prepareApiData(Connector.sendRequest(Connector.buildApiRequest("Warszawa")));
+        //Connector.prepareApiData();
         mainWindow.showMainWindow();
     }
 }

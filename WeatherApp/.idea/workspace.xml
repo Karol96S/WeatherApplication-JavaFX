@@ -7,11 +7,16 @@
     <list default="true" id="d11996a0-1247-4789-8620-98272540d8bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/controller/APIConnection.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/model/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/model/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/weather/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/weather/Launcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/weather/controller/APIConnection.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/weather/controller/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/weather/controller/MainWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/weather/model/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/weather/model/Connector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="module-info" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,7 +55,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/GIGABYTE GAMING/Desktop/PP/Projekty/Java/EmailClient",
+    "last_opened_file_path": "C:/Users/GIGABYTE GAMING/Desktop/PP/Projekty/Java/Application/WeatherApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

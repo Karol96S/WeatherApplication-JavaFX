@@ -4,8 +4,11 @@ module WeatherApp {
     requires javafx.graphics;
     requires javafx.web;
     requires java.desktop;
+    requires org.apache.httpcomponents.httpclient;
+    requires java.net.http;
+    requires org.json;
 
     opens com.weather;
     opens com.weather.controller;
-    //opens com.weather.model;
+    opens com.weather.model;
 }
