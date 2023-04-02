@@ -2,6 +2,8 @@ package com.weather.model;
 
 import com.weather.Config;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,17 +12,26 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Connector {
     public static String apiEndPoint="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
-    public static String location="London,UK";
+    public static String location="";
     public static String timeSpan ="next5days";
     public static String startDate=null; //optional (omit for forecast)
     public static String endDate=null; //optional (requires a startDate if present)
     public static String unitGroup="metric"; //us,metric,uk
     private static String API_KEY = Config.getKey();
     public static String uri;
+    private static Connector instance = new Connector();
+    private Connector() {}
 
+    public static Connector getInstance() {
+        return instance;
+    }
 
     public String getApiEndPoint() {
         return apiEndPoint;
@@ -62,7 +73,8 @@ public class Connector {
         this.unitGroup = unitGroup;
     }
 
-    public static void buildApiRequest() {
+    public static String buildApiRequest(String city) {
+        location = city;
         StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
         requestBuilder.append(location);
 
@@ -74,12 +86,14 @@ public class Connector {
         }
 
         requestBuilder.append("/").append(timeSpan);
-        requestBuilder.append("?key=").append(API_KEY);
+        requestBuilder.append("?unitGroup=").append(unitGroup);
+        requestBuilder.append("&key=").append(API_KEY);
         uri = requestBuilder.toString();
+        return uri;
     }
 
-    public static void sendRequest() throws IOException, InterruptedException {
-        buildApiRequest();
+    public static String sendRequest(String uri) throws IOException, InterruptedException {
+        //buildApiRequest();
         System.out.println(uri);
         var uriString = URI.create(uri);
         var client = HttpClient.newHttpClient();
@@ -93,9 +107,6 @@ public class Connector {
                 HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
         );
         System.out.println(response.body());
-    }
-
-    public void prepareApiData() {
-        
+        return response.body();
     }
 }

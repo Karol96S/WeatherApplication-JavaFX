@@ -6,6 +6,7 @@ module WeatherApp {
     requires java.desktop;
     requires org.apache.httpcomponents.httpclient;
     requires java.net.http;
+    requires org.json;
 
     opens com.weather;
     opens com.weather.controller;
