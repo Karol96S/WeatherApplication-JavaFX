@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d11996a0-1247-4789-8620-98272540d8bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/clear-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/clear-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/cloudy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/fog.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/hail.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/partly-cloudy-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/partly-cloudy-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/rain-snow-showers-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/rain-snow-showers-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/rain-snow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/rain.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/showers-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/showers-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/sleet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/snow-showers-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/snow-showers-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/snow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/thunder-rain.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/thunder-showers-day.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/thunder-showers-night.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/thunder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/wind.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/weather/controller/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/weather/controller/MainWindowController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
