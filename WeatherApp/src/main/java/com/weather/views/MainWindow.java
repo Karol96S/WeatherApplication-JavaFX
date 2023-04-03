@@ -70,7 +70,7 @@ public class MainWindow {
         }
     }
 
-    public void populateIcons(List<String> icons, GridPane weatherGrid) {
+    public void populateStartCityIcons(List<String> icons, GridPane weatherGrid) {
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             ImageView imageView = new ImageView();
             String icon = icons.get(row);
@@ -84,7 +84,7 @@ public class MainWindow {
         }
     }
 
-    public void populateTemperatures(List<Double> dayTemperatures, List<Double> nightTemperatures, GridPane weatherGrid) {
+    public void populateStartCityTemperatures(List<Double> dayTemperatures, List<Double> nightTemperatures, GridPane weatherGrid) {
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             Label labelDayStartTemp = new Label();
             String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";
@@ -103,6 +103,42 @@ public class MainWindow {
             vBox.getChildren().add(labelDayStartTemp);
             vBox.getChildren().add(labelNightStartTemp);
             weatherGrid.add(vBox,2,row);
+        }
+    }
+
+    public void populateDestinationCityIcons(List<String> icons, GridPane weatherGrid) {
+        for(int row = 0; row < weatherGrid.getRowCount(); row++) {
+            ImageView imageView = new ImageView();
+            String icon = icons.get(row);
+            String imagePath = getIconPath(icon);
+            System.out.println(imagePath);
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            imageView.setImage(image);
+            imageView.setFitHeight(40);
+            imageView.setFitWidth(40);
+            weatherGrid.add(imageView, 4, row);
+        }
+    }
+
+    public void populateDestinationCityTemperatures(List<Double> dayTemperatures, List<Double> nightTemperatures, GridPane weatherGrid) {
+        for(int row = 0; row < weatherGrid.getRowCount(); row++) {
+            Label labelDayStartTemp = new Label();
+            String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";
+            labelDayStartTemp.setText(text);
+            labelDayStartTemp.setMaxWidth(100);
+            labelDayStartTemp.setMaxHeight(10);
+            labelDayStartTemp.setFont(new Font(12));
+            Label labelNightStartTemp = new Label();
+
+            text = "Noc: " + nightTemperatures.get(row).toString() + "\u00B0" + "C";
+            labelNightStartTemp.setText(text);
+            labelNightStartTemp.setMaxWidth(100);
+            labelNightStartTemp.setMaxHeight(10);
+            labelNightStartTemp.setFont(new Font(12));
+            VBox vBox = new VBox();
+            vBox.getChildren().add(labelDayStartTemp);
+            vBox.getChildren().add(labelNightStartTemp);
+            weatherGrid.add(vBox,5,row);
         }
     }
 
