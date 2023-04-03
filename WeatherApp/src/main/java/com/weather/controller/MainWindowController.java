@@ -70,12 +70,13 @@ public class MainWindowController extends BaseController implements Initializabl
         List<String> icons = weatherDataStartCity.getIconTypes();
 
         mainWindow.populateDaysOfTheWeek(daysOfTheWeek, weatherGrid);
-        mainWindow.populateIcons(icons, weatherGrid);
-        mainWindow.populateTemperatures(startCityDayTemperatures, startCityNightTemperatures, weatherGrid);
+        mainWindow.populateStartCityIcons(icons, weatherGrid);
+        mainWindow.populateStartCityTemperatures(startCityDayTemperatures, startCityNightTemperatures, weatherGrid);
 
     }
 
     private void updateDestinationCityForecast() throws IOException, InterruptedException {
+
         String uriDestination = Connector.buildApiRequest(destinationCity.getText());
         String rawDataDestination = Connector.sendRequest(uriDestination);
         WeatherData weatherDataDestinationCity = new WeatherData(rawDataDestination);
@@ -85,8 +86,8 @@ public class MainWindowController extends BaseController implements Initializabl
         List<DayOfWeek> daysOfTheWeek = weatherDataDestinationCity.getDays();
         List<String> icons = weatherDataDestinationCity.getIconTypes();
 
-        mainWindow.populateIcons(icons, weatherGrid);
-        mainWindow.populateTemperatures(destinationCityDayTemperatures, destinationCityNightTemperatures, weatherGrid);
+        mainWindow.populateDestinationCityIcons(icons, weatherGrid);
+        mainWindow.populateDestinationCityTemperatures(destinationCityDayTemperatures, destinationCityNightTemperatures, weatherGrid);
     }
 
 
