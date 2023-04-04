@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.DayOfWeek;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -31,6 +32,9 @@ public class MainWindowController extends BaseController implements Initializabl
     public MainWindowController(WeatherMenager weatherMenager, MainWindow mainWindow, String fxmlName) {
         super(weatherMenager, mainWindow, fxmlName);
     }
+
+    @FXML
+    private Label mainTitle;
 
     @FXML
     private TextField destinationCity;
@@ -51,6 +55,9 @@ public class MainWindowController extends BaseController implements Initializabl
     private GridPane weatherGrid;
 
     @FXML
+    private GridPane citiesGrid;
+
+    @FXML
     void checkWeatherButtonAction() throws IOException, InterruptedException {
         startCityDisplayLabel.setText(startCity.getText());
         updateStartingCityForecast();
@@ -67,9 +74,10 @@ public class MainWindowController extends BaseController implements Initializabl
         List<Double> startCityDayTemperatures = weatherDataStartCity.getCityMaxTemperatures();
         List<Double> startCityNightTemperatures = weatherDataStartCity.getCityMinTemperatures();
         List<DayOfWeek> daysOfTheWeek = weatherDataStartCity.getDays();
+        List<ZonedDateTime> calendarDays = weatherDataStartCity.getDates();
         List<String> icons = weatherDataStartCity.getIconTypes();
 
-        mainWindow.populateDaysOfTheWeek(daysOfTheWeek, weatherGrid);
+        mainWindow.populateDaysOfTheWeek(calendarDays, daysOfTheWeek, weatherGrid);
         mainWindow.populateStartCityIcons(icons, weatherGrid);
         mainWindow.populateStartCityTemperatures(startCityDayTemperatures, startCityNightTemperatures, weatherGrid);
 
@@ -91,7 +99,5 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 }
