@@ -4,7 +4,9 @@ import com.weather.WeatherMenager;
 import com.weather.controller.BaseController;
 import com.weather.controller.MainWindowController;
 import com.weather.model.Date;
+import com.weather.model.WeatherData;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,8 @@ public class MainWindow {
 
     private WeatherMenager weatherMenager;
     private ArrayList<Stage> activeStages;
+    private final int iconHeight = 55;
+    private final int iconWidth = 55;
 
     public MainWindow(WeatherMenager weatherMenager) {
         this.weatherMenager = weatherMenager;
@@ -45,10 +51,11 @@ public class MainWindow {
         }
 
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         Stage stage = new Stage();
+        stage.setTitle("Aplikacja Pogodowa");
         stage.setScene(scene);
         stage.show();
-        activeStages.add(stage);
 
     }
 
@@ -61,12 +68,19 @@ public class MainWindow {
 
     }
 
-    public void populateDaysOfTheWeek(List<DayOfWeek> dayOfWeeks, GridPane weatherGrid) {
+    public void populateDaysOfTheWeek(List<ZonedDateTime> calendarDates, List<DayOfWeek> dayOfWeeks, GridPane weatherGrid) {
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
-            Label label = new Label();
+            Label labelDay = new Label();
+            Label labelDate = new Label();
             String day = Date.translatedDayOfTheWeek(dayOfWeeks.get(row));
-            label.setText(day);
-            weatherGrid.add(label, 0, row);
+            String date = calendarDates.get(row).format(DateTimeFormatter.ofPattern("dd.MM.YYYY")).toString();
+            labelDay.setText(day);
+            labelDay.setStyle("-fx-font-weight: bold");
+            labelDate.setText(date);
+            VBox vBox = new VBox();
+            vBox.getChildren().add(labelDay);
+            vBox.getChildren().add(labelDate);
+            weatherGrid.add(vBox, 0, row);
         }
     }
 
@@ -78,8 +92,8 @@ public class MainWindow {
             System.out.println(imagePath);
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             imageView.setImage(image);
-            imageView.setFitHeight(40);
-            imageView.setFitWidth(40);
+            imageView.setFitHeight(iconHeight);
+            imageView.setFitWidth(iconWidth);
             weatherGrid.add(imageView, 1, row);
         }
     }
@@ -89,15 +103,13 @@ public class MainWindow {
             Label labelDayStartTemp = new Label();
             String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";
             labelDayStartTemp.setText(text);
-            labelDayStartTemp.setMaxWidth(100);
-            labelDayStartTemp.setMaxHeight(10);
+            labelDayStartTemp.setMaxWidth(Double.MAX_VALUE);
             labelDayStartTemp.setFont(new Font(12));
             Label labelNightStartTemp = new Label();
 
             text = "Noc: " + nightTemperatures.get(row).toString() + "\u00B0" + "C";
             labelNightStartTemp.setText(text);
-            labelNightStartTemp.setMaxWidth(100);
-            labelNightStartTemp.setMaxHeight(10);
+            labelNightStartTemp.setMaxWidth(Double.MAX_VALUE);
             labelNightStartTemp.setFont(new Font(12));
             VBox vBox = new VBox();
             vBox.getChildren().add(labelDayStartTemp);
@@ -114,8 +126,8 @@ public class MainWindow {
             System.out.println(imagePath);
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             imageView.setImage(image);
-            imageView.setFitHeight(40);
-            imageView.setFitWidth(40);
+            imageView.setFitHeight(iconHeight);
+            imageView.setFitWidth(iconWidth);
             weatherGrid.add(imageView, 4, row);
         }
     }
@@ -125,15 +137,13 @@ public class MainWindow {
             Label labelDayStartTemp = new Label();
             String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";
             labelDayStartTemp.setText(text);
-            labelDayStartTemp.setMaxWidth(100);
-            labelDayStartTemp.setMaxHeight(10);
+            labelDayStartTemp.setMaxWidth(Double.MAX_VALUE);
             labelDayStartTemp.setFont(new Font(12));
             Label labelNightStartTemp = new Label();
 
             text = "Noc: " + nightTemperatures.get(row).toString() + "\u00B0" + "C";
             labelNightStartTemp.setText(text);
-            labelNightStartTemp.setMaxWidth(100);
-            labelNightStartTemp.setMaxHeight(10);
+            labelNightStartTemp.setMaxWidth(Double.MAX_VALUE);
             labelNightStartTemp.setFont(new Font(12));
             VBox vBox = new VBox();
             vBox.getChildren().add(labelDayStartTemp);
