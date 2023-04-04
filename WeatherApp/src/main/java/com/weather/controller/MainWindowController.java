@@ -1,26 +1,14 @@
 package com.weather.controller;
 
-import com.weather.WeatherMenager;
 import com.weather.model.Connector;
-import com.weather.model.Date;
 import com.weather.model.WeatherData;
 import com.weather.views.MainWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
@@ -29,8 +17,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController extends BaseController implements Initializable {
 
-    public MainWindowController(WeatherMenager weatherMenager, MainWindow mainWindow, String fxmlName) {
-        super(weatherMenager, mainWindow, fxmlName);
+    public MainWindowController(MainWindow mainWindow, String fxmlName) {
+        super(mainWindow, fxmlName);
     }
 
     @FXML
@@ -59,43 +47,91 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     void checkWeatherButtonAction() throws IOException, InterruptedException {
-        startCityDisplayLabel.setText(startCity.getText());
         updateStartingCityForecast();
-
-        destinationCityDisplayLabel.setText(destinationCity.getText());
         updateDestinationCityForecast();
     }
 
     private void updateStartingCityForecast() throws IOException, InterruptedException {
-        String uriStart = Connector.buildApiRequest(startCity.getText());
-        String rawDataStart = Connector.sendRequest(uriStart);
-        WeatherData weatherDataStartCity = new WeatherData(rawDataStart);
+        if (startCity.getText().length() > 0) {
+            String uriStart = Connector.buildApiRequest(startCity.getText());
+            String rawDataStart = Connector.sendRequest(uriStart);
 
-        List<Double> startCityDayTemperatures = weatherDataStartCity.getCityMaxTemperatures();
-        List<Double> startCityNightTemperatures = weatherDataStartCity.getCityMinTemperatures();
-        List<DayOfWeek> daysOfTheWeek = weatherDataStartCity.getDays();
-        List<ZonedDateTime> calendarDays = weatherDataStartCity.getDates();
-        List<String> icons = weatherDataStartCity.getIconTypes();
+            if (rawDataStart != null) {
+                WeatherData weatherDataStartCity = new WeatherData(rawDataStart);
 
-        mainWindow.populateDaysOfTheWeek(calendarDays, daysOfTheWeek, weatherGrid);
-        mainWindow.populateStartCityIcons(icons, weatherGrid);
-        mainWindow.populateStartCityTemperatures(startCityDayTemperatures, startCityNightTemperatures, weatherGrid);
+                List<Double> startCityDayTemperatures = weatherDataStartCity.getCityMaxTemperatures();
+                List<Double> startCityNightTemperatures = weatherDataStartCity.getCityMinTemperatures();
+                List<DayOfWeek> daysOfTheWeek = weatherDataStartCity.getDays();
+                List<ZonedDateTime> calendarDays = weatherDataStartCity.getDates();
+                List<String> icons = weatherDataStartCity.getIconTypes();
 
+                startCityDisplayLabel.setText(startCity.getText());
+                mainWindow.populateDaysOfTheWeek(calendarDays, daysOfTheWeek, weatherGrid);
+                mainWindow.populateStartCityIcons(icons, weatherGrid);
+                mainWindow.populateStartCityTemperatures(startCityDayTemperatures, startCityNightTemperatures, weatherGrid);
+            } else {
+                int statusCode = Connector.getInstance().getErrorCode();
+                switch (statusCode) {
+                    case 400:
+                        errorLabel.setText("Takie miasto startowe nie istnieje!");
+                        break;
+                    case 401:
+                        errorLabel.setText("Problem z kluczem!");
+                        break;
+                    case 403:
+                        errorLabel.setText("Brak dostępu!");
+                        break;
+                    case 404:
+                        errorLabel.setText("Problem z serwerem!");
+                        break;
+                    default:
+                        errorLabel.setText("Nieznany problem!");
+                        break;
+                }
+            }
+        } else {
+            errorLabel.setText("Pola nie mogą być puste!");
+        }
     }
 
     private void updateDestinationCityForecast() throws IOException, InterruptedException {
+        if (destinationCity.getText().length() > 0) {
+            String uriDestination = Connector.buildApiRequest(destinationCity.getText());
+            String rawDataDestination = Connector.sendRequest(uriDestination);
 
-        String uriDestination = Connector.buildApiRequest(destinationCity.getText());
-        String rawDataDestination = Connector.sendRequest(uriDestination);
-        WeatherData weatherDataDestinationCity = new WeatherData(rawDataDestination);
+            if (rawDataDestination != null) {
+            WeatherData weatherDataDestinationCity = new WeatherData(rawDataDestination);
 
-        List<Double> destinationCityDayTemperatures = weatherDataDestinationCity.getCityMaxTemperatures();
-        List<Double> destinationCityNightTemperatures = weatherDataDestinationCity.getCityMinTemperatures();
-        List<DayOfWeek> daysOfTheWeek = weatherDataDestinationCity.getDays();
-        List<String> icons = weatherDataDestinationCity.getIconTypes();
+            List<Double> destinationCityDayTemperatures = weatherDataDestinationCity.getCityMaxTemperatures();
+            List<Double> destinationCityNightTemperatures = weatherDataDestinationCity.getCityMinTemperatures();
+            List<String> icons = weatherDataDestinationCity.getIconTypes();
 
-        mainWindow.populateDestinationCityIcons(icons, weatherGrid);
-        mainWindow.populateDestinationCityTemperatures(destinationCityDayTemperatures, destinationCityNightTemperatures, weatherGrid);
+            destinationCityDisplayLabel.setText(destinationCity.getText());
+            mainWindow.populateDestinationCityIcons(icons, weatherGrid);
+            mainWindow.populateDestinationCityTemperatures(destinationCityDayTemperatures, destinationCityNightTemperatures, weatherGrid);
+            } else {
+                int statusCode = Connector.getInstance().getErrorCode();
+                switch(statusCode) {
+                    case 400:
+                        errorLabel.setText("Takie miasto docelowe nie istnieje!");
+                        break;
+                    case 401:
+                        errorLabel.setText("Problem z kluczem!");
+                        break;
+                    case 403:
+                        errorLabel.setText("Brak dostępu!");
+                        break;
+                    case 404:
+                        errorLabel.setText("Problem z serwerem!");
+                        break;
+                    default:
+                        errorLabel.setText("Nieznany problem!");
+                        break;
+                }
+            }
+        } else {
+            errorLabel.setText("Pola nie mogą być puste!");
+        }
     }
 
 

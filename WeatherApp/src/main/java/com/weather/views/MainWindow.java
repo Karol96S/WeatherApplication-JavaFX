@@ -1,12 +1,9 @@
 package com.weather.views;
 
-import com.weather.WeatherMenager;
 import com.weather.controller.BaseController;
 import com.weather.controller.MainWindowController;
 import com.weather.model.Date;
-import com.weather.model.WeatherData;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -26,13 +23,11 @@ import java.util.List;
 
 public class MainWindow {
 
-    private WeatherMenager weatherMenager;
     private ArrayList<Stage> activeStages;
     private final int iconHeight = 55;
     private final int iconWidth = 55;
 
-    public MainWindow(WeatherMenager weatherMenager) {
-        this.weatherMenager = weatherMenager;
+    public MainWindow() {
         activeStages = new ArrayList<Stage>();
     }
 
@@ -63,7 +58,7 @@ public class MainWindow {
 
         System.out.println("show main window called");
 
-        BaseController controller = new MainWindowController(weatherMenager, this,"/MainWindow.fxml");
+        BaseController controller = new MainWindowController(this,"/MainWindow.fxml");
         initializeStage(controller);
 
     }
