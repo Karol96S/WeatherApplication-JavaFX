@@ -1,21 +1,12 @@
 package com.weather.model;
 
 import com.weather.Config;
-import org.apache.http.client.utils.URIBuilder;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Connector {
     public static String apiEndPoint="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
@@ -26,6 +17,7 @@ public class Connector {
     public static String unitGroup="metric"; //us,metric,uk
     private static String API_KEY = Config.getKey();
     public static String uri;
+    public static int errorCode;
     private static Connector instance = new Connector();
     private Connector() {}
 
@@ -73,6 +65,10 @@ public class Connector {
         this.unitGroup = unitGroup;
     }
 
+    public int getErrorCode() {
+        return errorCode;
+    }
+
     public static String buildApiRequest(String city) {
         location = city;
         StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
@@ -93,7 +89,6 @@ public class Connector {
     }
 
     public static String sendRequest(String uri) throws IOException, InterruptedException {
-        //buildApiRequest();
         System.out.println(uri);
         var uriString = URI.create(uri);
         var client = HttpClient.newHttpClient();
@@ -106,7 +101,15 @@ public class Connector {
                 request,
                 HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
         );
+
+        System.out.println(response.statusCode());
         System.out.println(response.body());
+
+        if(response.statusCode() == 200) {
         return response.body();
+        } else {
+            errorCode = response.statusCode();
+            return null;
+        }
     }
 }
