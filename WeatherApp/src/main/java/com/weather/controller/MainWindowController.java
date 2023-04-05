@@ -46,12 +46,12 @@ public class MainWindowController extends BaseController implements Initializabl
     private GridPane citiesGrid;
 
     @FXML
-    void checkWeatherButtonAction() throws IOException, InterruptedException {
+    void checkWeatherButtonAction() {
         updateStartingCityForecast();
         updateDestinationCityForecast();
     }
 
-    private void updateStartingCityForecast() throws IOException, InterruptedException {
+    private void updateStartingCityForecast() {
         if (startCity.getText().length() > 0) {
             String uriStart = Connector.buildApiRequest(startCity.getText());
             String rawDataStart = Connector.sendRequest(uriStart);
@@ -94,7 +94,7 @@ public class MainWindowController extends BaseController implements Initializabl
         }
     }
 
-    private void updateDestinationCityForecast() throws IOException, InterruptedException {
+    private void updateDestinationCityForecast() {
         if (destinationCity.getText().length() > 0) {
             String uriDestination = Connector.buildApiRequest(destinationCity.getText());
             String rawDataDestination = Connector.sendRequest(uriDestination);

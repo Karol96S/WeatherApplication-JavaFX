@@ -15,7 +15,7 @@ public class Connector {
     public static String startDate=null; //optional (omit for forecast)
     public static String endDate=null; //optional (requires a startDate if present)
     public static String unitGroup="metric"; //us,metric,uk
-    private static String API_KEY = Config.getKey();
+    private static final String API_KEY = Config.getKey();
     public static String uri;
     public static int errorCode;
     private static Connector instance = new Connector();
@@ -88,8 +88,9 @@ public class Connector {
         return uri;
     }
 
-    public static String sendRequest(String uri) throws IOException, InterruptedException {
+    public static String sendRequest(String uri) {
         System.out.println(uri);
+
         var uriString = URI.create(uri);
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder()
@@ -97,6 +98,7 @@ public class Connector {
                 .uri(uriString)
                 .header("Accept", "application/json")
                 .build();
+        try {
         var response = client.send(
                 request,
                 HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
@@ -105,11 +107,16 @@ public class Connector {
         System.out.println(response.statusCode());
         System.out.println(response.body());
 
-        if(response.statusCode() == 200) {
-        return response.body();
-        } else {
-            errorCode = response.statusCode();
-            return null;
+            if(response.statusCode() == 200) {
+            return response.body();
+            } else {
+                errorCode = response.statusCode();
+                return null;
+            }
+        } catch (IOException | InterruptedException e) {
+            errorCode = 404;
+            e.printStackTrace();
         }
+        return null;
     }
 }
