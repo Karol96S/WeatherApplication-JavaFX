@@ -202,7 +202,7 @@ public class MainWindow {
             case "snow-showers-night":
                 imagePath += "snow-showers-night.png";
                 break;
-            case "thunger":
+            case "thunder":
                 imagePath += "thunder.png";
                 break;
             case "thunder-rain":

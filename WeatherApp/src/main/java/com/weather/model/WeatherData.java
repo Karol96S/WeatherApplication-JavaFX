@@ -40,7 +40,6 @@ public class WeatherData {
     }
 
     public WeatherData(String rawData) {
-        //String rawData = sendRequest();
         JSONObject timelineResponse = new JSONObject(rawData);
         ZoneId zoneId = ZoneId.of(timelineResponse.getString("timezone"));
         System.out.printf("Weather data for: %s%n", timelineResponse.getString("resolvedAddress"));
