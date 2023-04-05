@@ -1,0 +1,4 @@
+--patch-module
+WeatherApp=_
+--add-reads
+WeatherApp=ALL-UNNAMED
