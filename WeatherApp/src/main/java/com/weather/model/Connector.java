@@ -70,7 +70,7 @@ public class Connector {
     }
 
     public static String buildApiRequest(String city) {
-        location = city;
+        location = city.replaceAll("\\s+","");
         StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
         requestBuilder.append(location);
 

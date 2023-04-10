@@ -64,6 +64,8 @@ public class MainWindow {
     }
 
     public void populateDaysOfTheWeek(List<ZonedDateTime> calendarDates, List<DayOfWeek> dayOfWeeks, GridPane weatherGrid) {
+        weatherGrid.getChildren().removeIf( node -> GridPane.getColumnIndex(node) == 0);
+
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             Label labelDay = new Label();
             Label labelDate = new Label();
@@ -80,6 +82,8 @@ public class MainWindow {
     }
 
     public void populateStartCityIcons(List<String> icons, GridPane weatherGrid) {
+        weatherGrid.getChildren().removeIf( node -> GridPane.getColumnIndex(node) == 1);
+
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             ImageView imageView = new ImageView();
             String icon = icons.get(row);
@@ -94,6 +98,8 @@ public class MainWindow {
     }
 
     public void populateStartCityTemperatures(List<Double> dayTemperatures, List<Double> nightTemperatures, GridPane weatherGrid) {
+        weatherGrid.getChildren().removeIf( node -> GridPane.getColumnIndex(node) == 2);
+
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             Label labelDayStartTemp = new Label();
             String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";
@@ -114,6 +120,8 @@ public class MainWindow {
     }
 
     public void populateDestinationCityIcons(List<String> icons, GridPane weatherGrid) {
+        weatherGrid.getChildren().removeIf( node -> GridPane.getColumnIndex(node) == 4);
+
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             ImageView imageView = new ImageView();
             String icon = icons.get(row);
@@ -128,6 +136,8 @@ public class MainWindow {
     }
 
     public void populateDestinationCityTemperatures(List<Double> dayTemperatures, List<Double> nightTemperatures, GridPane weatherGrid) {
+        weatherGrid.getChildren().removeIf( node -> GridPane.getColumnIndex(node) == 5);
+
         for(int row = 0; row < weatherGrid.getRowCount(); row++) {
             Label labelDayStartTemp = new Label();
             String text = "Dzień: " + dayTemperatures.get(row).toString() + "\u00B0" + "C";

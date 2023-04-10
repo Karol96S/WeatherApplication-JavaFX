@@ -47,6 +47,7 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     void checkWeatherButtonAction() {
+        errorLabel.setText("");
         updateStartingCityForecast();
         updateDestinationCityForecast();
     }
