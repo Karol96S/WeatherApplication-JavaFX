@@ -1,10 +1,13 @@
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\Launcher.java
-C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\controller\BaseController.java
-C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\Date.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\WeatherServiceFactory.java
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\Config.java
-C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\WeatherData.java
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\controller\MainWindowController.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\client\WeatherClient.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\WeatherService.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\controller\BaseController.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\client\VisualCrossingClient.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\Date.java
+C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\WeatherData.java
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\views\MainWindow.java
-C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\model\Connector.java
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\module-info.java
 C:\Users\GIGABYTE GAMING\Desktop\PP\Projekty\Java\Application\WeatherApp\src\main\java\com\weather\StarterApp.java
