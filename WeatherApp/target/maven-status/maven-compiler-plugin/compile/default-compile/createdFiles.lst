@@ -1,10 +1,13 @@
+com\weather\model\WeatherService.class
 com\weather\model\Date.class
 com\weather\Config.class
 module-info.class
-com\weather\model\Connector.class
+com\weather\model\client\VisualCrossingClient.class
 com\weather\controller\MainWindowController.class
 com\weather\views\MainWindow.class
+com\weather\model\client\WeatherClient.class
 com\weather\Launcher.class
+com\weather\model\WeatherServiceFactory.class
 com\weather\controller\BaseController.class
 com\weather\model\WeatherData.class
 com\weather\StarterApp.class
