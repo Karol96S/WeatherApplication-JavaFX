@@ -39,34 +39,39 @@ public class WeatherData {
         return days;
     }
 
-    public WeatherData(String rawData) {
-        JSONObject timelineResponse = new JSONObject(rawData);
-        ZoneId zoneId = ZoneId.of(timelineResponse.getString("timezone"));
-        System.out.printf("Weather data for: %s%n", timelineResponse.getString("resolvedAddress"));
+    public int statusCode;
 
-        JSONArray values=timelineResponse.getJSONArray("days");
+    public WeatherData(String rawData, int statusCode) {
+            this.statusCode = statusCode;
 
-        System.out.printf("Date\tMaxTemp\tMinTemp\tPrecip\tIcon%n");
-        for (int i = 0; i < values.length(); i++) {
-            JSONObject dayValue = values.getJSONObject(i);
+            if (statusCode == 200) {
+            JSONObject timelineResponse = new JSONObject(rawData);
+            ZoneId zoneId = ZoneId.of(timelineResponse.getString("timezone"));
+            System.out.printf("Weather data for: %s%n", timelineResponse.getString("resolvedAddress"));
 
-            ZonedDateTime datetime=
-                    ZonedDateTime.ofInstant(Instant.ofEpochSecond(
-                            dayValue.getLong("datetimeEpoch")), zoneId);
+            JSONArray values=timelineResponse.getJSONArray("days");
 
-            double maxTemp=dayValue.getDouble("tempmax");
-            double minTemp=dayValue.getDouble("tempmin");
-            double pop=dayValue.getDouble("precip");
-            String icon=dayValue.getString("icon");
-            System.out.printf("%s\t%.1f\t%.1f\t%.1f\t%s%n",
-                    datetime.format(DateTimeFormatter.ISO_LOCAL_DATE),
-                    maxTemp, minTemp, pop, icon );
-            this.dates.add(datetime);
-            this.days.add(datetime.getDayOfWeek());
-            this.cityMaxTemperatures.add(maxTemp);
-            this.cityMinTemperatures.add(minTemp);
-            this.iconType.add(icon);
+            System.out.printf("Date\tMaxTemp\tMinTemp\tPrecip\tIcon%n");
+            for (int i = 0; i < values.length(); i++) {
+                JSONObject dayValue = values.getJSONObject(i);
+
+                ZonedDateTime datetime=
+                        ZonedDateTime.ofInstant(Instant.ofEpochSecond(
+                                dayValue.getLong("datetimeEpoch")), zoneId);
+
+                double maxTemp=dayValue.getDouble("tempmax");
+                double minTemp=dayValue.getDouble("tempmin");
+                double pop=dayValue.getDouble("precip");
+                String icon=dayValue.getString("icon");
+                System.out.printf("%s\t%.1f\t%.1f\t%.1f\t%s%n",
+                        datetime.format(DateTimeFormatter.ISO_LOCAL_DATE),
+                        maxTemp, minTemp, pop, icon );
+                this.dates.add(datetime);
+                this.days.add(datetime.getDayOfWeek());
+                this.cityMaxTemperatures.add(maxTemp);
+                this.cityMinTemperatures.add(minTemp);
+                this.iconType.add(icon);
+            }
         }
     }
-
 }

@@ -1,6 +1,8 @@
-package com.weather.model;
+package com.weather.model.client;
 
 import com.weather.Config;
+import com.weather.model.WeatherData;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,7 +10,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
-public class Connector {
+public class VisualCrossingClient implements WeatherClient {
+
     public static String apiEndPoint="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
     public static String location="";
     public static String timeSpan ="next5days";
@@ -17,60 +20,18 @@ public class Connector {
     public static String unitGroup="metric"; //us,metric,uk
     private static final String API_KEY = Config.getKey();
     public static String uri;
-    public static int errorCode;
-    private static Connector instance = new Connector();
-    private Connector() {}
+    public static int statusCode;
 
-    public static Connector getInstance() {
-        return instance;
-    }
+    @Override
+    public WeatherData getWeather(String cityName) {
+        this.uri = buildApiRequest(cityName);
+        String rawData = sendRequest(uri);
 
-    public String getApiEndPoint() {
-        return apiEndPoint;
-    }
-
-    public void setApiEndPoint(String apiEndPoint) {
-        this.apiEndPoint = apiEndPoint;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getUnitGroup() {
-        return unitGroup;
-    }
-
-    public void setUnitGroup(String unitGroup) {
-        this.unitGroup = unitGroup;
-    }
-
-    public int getErrorCode() {
-        return errorCode;
+        return new WeatherData(rawData, statusCode);
     }
 
     public static String buildApiRequest(String city) {
-        location = city.replaceAll("\\s+","");
+        String location = city.replaceAll("\\s+","");
         StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
         requestBuilder.append(location);
 
@@ -99,22 +60,23 @@ public class Connector {
                 .header("Accept", "application/json")
                 .build();
         try {
-        var response = client.send(
-                request,
-                HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
-        );
+            var response = client.send(
+                    request,
+                    HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
+            );
 
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+            System.out.println(response.statusCode());
+            System.out.println(response.body());
 
             if(response.statusCode() == 200) {
-            return response.body();
+                statusCode = 200;
+                return response.body();
             } else {
-                errorCode = response.statusCode();
+                statusCode = response.statusCode();
                 return null;
             }
         } catch (IOException | InterruptedException e) {
-            errorCode = 404;
+            statusCode = 404;
             e.printStackTrace();
         }
         return null;

@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d11996a0-1247-4789-8620-98272540d8bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/model/Connector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/model/WeatherData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/model/WeatherData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="module-info" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
